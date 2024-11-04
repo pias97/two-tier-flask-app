@@ -1,7 +1,4 @@
-Version: '3.8'
-
-volume:
-  mysql-data:
+version: "3.8"
 
 services:
   mysql:
@@ -29,19 +26,20 @@ services:
   flask-app: 
     build:
       context: .
-      conainer_name: flask-app 
-      ports:
-        - "5000:5000"
-      networks:
-        - two-tier
-      depends_on:
-        - mysql
-      environment:
-        MYSQL_HOST=mysql
-        MYSQL_USER=admin
-        MYSQL_PASSWORD=admin
-        MYSQL_DB=myDb
-      restart: always
+      dockerfile: ./Dockerfile
+    container_name: flask-app 
+    ports:
+      - "5000:5000"
+    networks:
+      - two-tier
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DB: myDb
+    restart: always
 
-
-  
+networks:
+  two-tier:
