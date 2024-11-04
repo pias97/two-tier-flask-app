@@ -1,0 +1,39 @@
+Version: '3'
+
+networks:
+  two-tier:
+
+volume:
+  mysql-data:
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: myDb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin 
+
+# To use a persistent volume for data persistence
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./message.sql:/docker-entrypoint-initdb.d/message.sql
+    ports:
+      - "3306:3306"
+    networks:
+      two-tier:
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  flask-app:
+    image: 
+  
