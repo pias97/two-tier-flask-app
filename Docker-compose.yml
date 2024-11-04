@@ -1,7 +1,4 @@
-Version: '3'
-
-networks:
-  two-tier:
+Version: '3.8'
 
 volume:
   mysql-data:
@@ -10,6 +7,7 @@ services:
   mysql:
     image: mysql:5.7
     container_name: mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: myDb
@@ -28,12 +26,22 @@ services:
   
   
   
-  
-  
-  
-  
-  
-  
-  flask-app:
-    image: 
+  flask-app: 
+    build:
+      context: .
+      conainer_name: flask-app 
+      ports:
+        - "5000:5000"
+      networks:
+        - two-tier
+      depends_on:
+        - mysql
+      environment:
+        MYSQL_HOST=mysql
+        MYSQL_USER=admin
+        MYSQL_PASSWORD=admin
+        MYSQL_DB=myDb
+      restart: always
+
+
   
