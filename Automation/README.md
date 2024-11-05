@@ -9,5 +9,3 @@ sudo sh ./Docker.sh
 ```
 sudo chown $USER /var/run/docker.sock
 ```
-
-# Kubeadm Installation Guide
