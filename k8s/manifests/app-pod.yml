@@ -8,7 +8,7 @@ spec:
       image: pias97/two-tier-flask-app:latest
       env:
         - name: MYSQL_HOST
-          value: "none" # will fill later
+          value: "mysql"                      # will fill later
         - name: MYSQL_PASSWORD
           value: "admin"
         - name: MYSQL_USER
