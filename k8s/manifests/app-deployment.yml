@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  labels:
+    app: myapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels: myapp
+    spec:
+      containers:
+        - name: my-flask-app
+          image: pias97/two-tier-flask-app:latest
+          env:
+            - name: MYSQL_HOST
+              value: "none" # will fill later
+            - name: MYSQL_PASSWORD
+              value: "admin"
+            - name: MYSQL_USER
+              value: "admin"
+            - name: MYSQL_DB
+              value: "myDb"
+          ports:
+            - containerPort: 5000
+
+          imagePullPolicy: Always

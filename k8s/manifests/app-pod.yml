@@ -4,18 +4,18 @@ metadata:
   name: myapp
 spec:
   containers:
-  - name: myapp
-    image: pias97/ci_cd_image:latest
-    env:
-      - name: MYSQL_HOST
-        value: # will fill later
-      - name: MYSQL_PASSWORD
-        value: "admin"
-      - name: MYSQL_USER
-        value: "admin"
-      - name: MYSQL_DB
-        value: "myDb"
-    ports:
-      - containerPort: 80
+    - name: my-flask-app
+      image: pias97/two-tier-flask-app:latest
+      env:
+        - name: MYSQL_HOST
+          value: "none" # will fill later
+        - name: MYSQL_PASSWORD
+          value: "admin"
+        - name: MYSQL_USER
+          value: "admin"
+        - name: MYSQL_DB
+          value: "myDb"
+      ports:
+        - containerPort: 5000
 
-    imagePullPolicy: Always
+      imagePullPolicy: Always
