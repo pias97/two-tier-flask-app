@@ -8,7 +8,7 @@ spec:
     image: pias97/ci_cd_image:latest
     env:
       - name: MYSQL_HOST
-        value: "none"
+        value: # will fill later
       - name: MYSQL_PASSWORD
         value: "admin"
       - name: MYSQL_USER
