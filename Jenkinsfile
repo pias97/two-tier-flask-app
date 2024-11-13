@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'agent_cicd'}
+    agent {label 'cicd_agent'}
     
     stages{
         stage("Code"){
