@@ -39,10 +39,6 @@
 
 
 
-
-
-
-
 pipeline {
     agent {label 'agent_cicd'}
     
@@ -53,22 +49,21 @@ pipeline {
                 echo "cloning the code"
             }
         }
-        stage("Build"){
+        stage("Build and Push to DockerHub"){
             steps{
-                echo "buiding the image"
-                sh "docker build -t pias97/two-tier-flaskapp:latest ."
-            }
-        }
-        stage("Push to DockerHub"){
-            steps{
-                echo "pushing the code"
+                withCredentials([usernamePassword(credentialsId:"dokcer_hub_cred",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                    echo "buiding the image"
+                    sh "docker build -t ${env.dockerHubUser}/two-tier-flaskapp:latest ."
+                    echo "pushing the image"
+                    sh "docker push ${env.dockerHubUser}/two-tier-flaskapp:latest" 
                 }
             }
-
+        }
         stage("Deploy"){
             steps{
                 echo "deploying the app"
-                sh "sudo docker run -d -p 5000:5000 pias97/two-tier-flaskapp:latest"
+                sh "docker-compose down && docker-compose up -d"
             }
         }
     }
