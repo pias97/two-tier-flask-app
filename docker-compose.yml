@@ -27,6 +27,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    image: pias97/two-tier-flaskapp:latest
     container_name: flask-app 
     ports:
       - "5000:5000"
