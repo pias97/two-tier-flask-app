@@ -67,7 +67,8 @@ pipeline {
 
         stage("Deploy"){
             steps{
-                echo "deploying the code"
+                echo "deploying the app"
+                sh "sudo docker run -d -p 5000:5000 pias97/two-tier-flaskapp:latest"
             }
         }
     }
