@@ -3,4 +3,4 @@ A simple web app that has one frontend and one MYSQL databse. Users can submit t
 
 So Far this is the architecture:
 - <b>CI pipeline to build and push</b>
-![image](/home/pias/Desktop/test/two-tier-flask-app/assets/diagram-1.png)
+![image](https://github.com/pias97/two-tier-flask-app/blob/main/assets/diagram-1.png)
